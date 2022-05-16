@@ -1,0 +1,51 @@
+import random
+
+# Witanie
+print("Witaj w swiecie wisielca, podaj swoj nick: ")
+pseudonim = input()
+
+# Hasła
+lista = ["sekret", "tunczyk", "brokul", "kicia", "James"]
+
+# Hasło
+haslo = str(lista[random.randint(0, len(lista) - 1)])
+tablica = list(haslo)
+
+# wyświetlanie _ _ _ _
+for i in range(len(haslo)):
+    tablica[i] = "_"
+
+# ilość żyć
+zycia = 6
+
+# Pętla
+while zycia > 0:
+    print("")
+    print(pseudonim, " pozostalo ci ", zycia, " zyc")
+    print("")
+    print(" ".join(tablica))
+    print(" ")
+
+    # prosimy uzytkownika o podanie litery
+    print("Podaj swoja litere: ")
+    litera = input()
+
+    # Hasło odgadniete
+    if litera in haslo:
+        # zmieniamy znak podkreslenia na odgadnieta litere
+        for i in range(len(haslo)):
+            if haslo[i] == litera:
+                tablica[i] = litera
+        # sprawdzant czy tablica jest juz rowna haslu
+        # czy udalo sie odgadnac caly wyraz
+        if "".join(map(str, tablica)) == haslo:
+            print("")
+            print(pseudonim, " pozostalo ci ", zycia, " zyc")
+            print("")
+            print(" ".join(tablica))
+            print(" ")
+            print(pseudonim, " wygrales!")
+            break
+    # nie udalo sie
+    else:
+        zycia -= 1
